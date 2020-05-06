@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Route;
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('{path}', function () {
+    return view('index');
+})->where('path', '(.*)');
