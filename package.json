@@ -10,10 +10,16 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
         "@babel/preset-react": "^7.0.0",
         "axios": "^0.19",
+        "babel-eslint": "^10.1.0",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
+        "eslint": "^7.0.0",
+        "eslint-config-airbnb-base": "^14.1.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-vue": "^6.2.2",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
@@ -25,6 +31,9 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@mapbox/mapbox-gl-language": "^0.10.1",
+        "@material-ui/core": "^4.9.14",
+        "mapbox-gl": "^1.10.0",
         "react-router": "^5.1.2",
         "react-router-dom": "^5.1.2"
     }
