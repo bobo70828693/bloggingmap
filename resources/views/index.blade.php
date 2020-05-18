@@ -7,7 +7,6 @@
     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Blogging Map</title>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
 
     <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
 </head>

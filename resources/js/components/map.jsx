@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-import mapboxgl from 'mapbox-gl';
 import Container from '@material-ui/core/Container';
-import MapboxLanguage from '@mapbox/mapbox-gl-language';
+import mapboxgl from 'mapbox-gl';
+import React, { Component } from "react";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibGVleGlhbyIsImEiOiJja2E1NGI4MzAxOTFsM2dtZXpieGdtdm55In0._w9lZwJsiFO8fRptodekUQ';
+mapboxgl.accessToken = process.env.MIX_MAP_BOX_KEY;
 
 export default class Map extends Component {
     mapRef = React.createRef();
@@ -22,7 +21,7 @@ export default class Map extends Component {
 
         const map = new mapboxgl.Map({
             container: this.mapRef.current,
-            style: 'mapbox://styles/mapbox/streets-v11',
+            style: 'mapbox://styles/leexiao/ckac62oej5du01jn22cjbkalj',
             center: [lng, lat],
             zoom
         });
@@ -36,11 +35,6 @@ export default class Map extends Component {
                 zoom: map.getZoom().toFixed(2)
             });
         });
-
-        // language
-
-        //map.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.0/mapbox-gl-rtl-text.js');
-        map.addControl(new MapboxLanguage({ defaultLanguage: 'zh' }));
     }
 
     render() {
@@ -51,7 +45,8 @@ export default class Map extends Component {
                 <div className='sidebarStyle'>
                     <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
                 </div>
-                <div ref={this.mapRef} style={{ height: '100%' }} className='mapContainer' />
+                <div ref={this.mapRef} className='mapContainer' />
+
             </Container>
         );
     }
