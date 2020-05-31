@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Users extends Model
+class Tag extends Model
 {
-    protected $table = 'users';
+    protected $table = 'tags';
     protected $dateFormat = 'Y-m-d H:i:s';
 }

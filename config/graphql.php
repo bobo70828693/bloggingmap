@@ -2,10 +2,18 @@
 
 declare(strict_types=1);
 
-// graphql query
-use App\GraphQL\Query\UsersQuery;
 // graphql type
-use App\GraphQL\Type\UsersType;
+use App\GraphQL\Type\UserType;
+use App\GraphQL\Type\BlogType;
+use App\GraphQL\Type\TagType;
+
+// graphql query
+use App\GraphQL\Query\BlogQuery;
+use App\GraphQL\Query\UserQuery;
+
+// graphql mutation
+use App\GraphQL\Mutation\CreateBlogMutation;
+use App\GraphQL\Mutation\Auth\RegisterMutation;
 
 return [
     // The prefix for routes
@@ -100,10 +108,12 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'users' => UsersQuery::class,
+                'user' => UserQuery::class,
+                'blog' => BlogQuery::class,
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
+                'createBlog' => CreateBlogMutation::class,
+                'register' => RegisterMutation::class
             ],
             'middleware' => [],
             'method' => ['get', 'post'],
@@ -120,7 +130,9 @@ return [
     // ]
     //
     'types' => [
-        'users' => UsersType::class,
+        'user' => UserType::class,
+        'blog' => BlogType::class,
+        'tag' => TagType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

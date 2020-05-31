@@ -2,16 +2,16 @@
 
 namespace App\GraphQL\Type;
 
-use App\Models\Users;
+use App\Models\Tag;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class UsersType extends GraphQLType
+class TagType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'users',
-        'description' => '使用者',
-        'model' => Users::class
+        'name' => 'tag',
+        'description' => '標籤',
+        'model' => Tag::class
     ];
 
     public function fields(): array
@@ -19,16 +19,16 @@ class UsersType extends GraphQLType
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => '商品id',
+                'description' => '標籤id'
             ],
             'name' => [
                 'type' => Type::string(),
-                'description' => '使用者名稱',
+                'description' => '標籤名稱'
             ],
-            'email' => [
+            'comment' => [
                 'type' => Type::string(),
-                'description' => '使用者電郵',
-            ],
+                'description' => '標籤備註'
+            ]
         ];
     }
 }
