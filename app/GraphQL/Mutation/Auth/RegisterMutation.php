@@ -10,6 +10,8 @@ use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Services\Account\Register;
+use Exception;
 
 class RegisterMutation extends Mutation
 {
@@ -19,6 +21,7 @@ class RegisterMutation extends Mutation
 
     public function __construct()
     {
+        $this->register = new Register();
         $this->userRepository = new UserRepository();
     }
 
@@ -53,12 +56,28 @@ class RegisterMutation extends Mutation
         $token = Str::random(64);
         $args['token'] = $token;
 
-        $register = $this->userRepository->create($args);
+        try{
+            DB::beginTransaction();
 
-        if (!$register) {
-            return null;
+            $register = $this->userRepository->create($args);
+
+            if ($register) {
+                $checkAuth = $this->register->authorize($args);
+
+                if ($checkAuth) {
+                    DB::commit();
+                    return $token;
+                } else {
+                    DB::rollBack();
+                    throw new Exception('register user account authorize failed');
+                }
+            } else {
+                DB::rollBack();
+                throw new Exception('register user account failed');
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new Exception('error with user register errorMsg: ' . $e->getMessage());
         }
-
-        return $token;
     }
 }

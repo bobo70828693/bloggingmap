@@ -11,6 +11,6 @@ class User extends Model
 
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = hash('sha256', $password);
+        $this->attributes['password'] = bcrypt($password);
     }
 }
