@@ -13,6 +13,7 @@ use App\GraphQL\Query\UserQuery;
 
 // graphql mutation
 use App\GraphQL\Mutation\CreateBlogMutation;
+use App\GraphQL\Mutation\Auth\LoginMutation;
 use App\GraphQL\Mutation\Auth\RegisterMutation;
 
 return [
@@ -113,7 +114,8 @@ return [
             ],
             'mutation' => [
                 'createBlog' => CreateBlogMutation::class,
-                'register' => RegisterMutation::class
+                'register' => RegisterMutation::class,
+                'login' => LoginMutation::class,
             ],
             'middleware' => [],
             'method' => ['get', 'post'],
